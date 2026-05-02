@@ -1,0 +1,22 @@
+.box{
+    background-color: beige;
+    width:700px;
+    height:330px;
+    border: 2px solid black;
+    display:flex;
+    box-sizing: border-box;
+}
+
+.batman , .jonsnow, .superman{
+    background-color: pink;
+    width:300px;
+    height:300px;
+    border: 2px solid brown;
+    margin:10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    /* transform: rotateX(150deg); */
+    
+}

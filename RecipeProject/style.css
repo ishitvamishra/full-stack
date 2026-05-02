@@ -1,0 +1,266 @@
+html {
+  scroll-behavior: smooth;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-sizing: border-box;
+    padding-bottom: 1.2rem;
+}
+
+.navbar{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(152, 161, 197);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.logo{
+    height: 100%;
+    width: 30%;
+}
+.logo img{
+    height: 100%;
+    width: auto;
+}
+
+.items{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.nav-list li {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    font-family: "Libertinus Math", system-ui;
+    letter-spacing: .1em;
+    color: #141E30;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
+}
+
+.nav-list li:hover {
+  background-color: #141E30;; 
+  color: white;
+  transform: translateY(-1px);
+}
+
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); /* slight slide up */
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  color: black;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  min-width: 150px;
+}
+
+/* Style dropdown items */
+.dropdown-menu li {
+    padding: 10px 20px;
+    white-space: nowrap;
+    font-family: "Libertinus Math", system-ui;
+    letter-spacing: 0.1em;
+}
+
+.dropdown-menu li:hover {
+    background-color:#141E30;
+    color: white;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* slide to original position */
+}
+.items img{
+    height: 30px;
+    width: auto;
+}
+.items ul {
+    list-style: none;
+    
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+}
+
+.items button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1500px; /* ✅ controls total width */
+  margin: 60px auto; /* ✅ centers the container */
+  padding: 0 20px;    /* ✅ adds space on left and right */
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: rgb(152, 161, 197);
+  border-radius: 20px;
+  text-align: center;
+  /* padding: 30px 20px; */
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card img{
+    height: 70%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card h2{
+    position: relative;
+    top: 20px;
+    font-family: "Libertinus Math", system-ui;
+    letter-spacing: .1em;
+    font-size: 17px;
+
+}
+
+.button{
+    position: relative;
+    font-family: "Libertinus Math", system-ui;
+    letter-spacing: .1em;
+    top: 50px;
+    width: 100px;
+    height: 40px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background: #141E30;
+    color: azure;
+    border: none;
+    
+}
+
+.button:hover {
+  background-color: white;
+  cursor: pointer;
+  color:#141E30;
+  font-weight: bold;
+}
+
+
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  height: 40px;
+  width: 100%;
+  padding: 0 40px 0 12px; /* space for button on right */
+  border: none;
+  font-family: "Libertinus Math", system-ui;
+  font-size: 14px;
+  background-color:rgb(152, 161, 197);
+  color:#141E30;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-icon-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.search-icon-btn img {
+  height: 16px;
+  width: 16px;
+  filter: brightness(0);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.search-icon-btn:hover img {
+  transform: scale(1.2); /* gently enlarges the icon */
+  filter: brightness(0.3); /* slightly lighter (or use brightness(1) for white) */
+}
+
+::placeholder{
+    color: #141E30;
+}
+
+.footer{
+  text-align: center;
+  font-family: "Libertinus Math", system-ui;
+  font-size: 15px;
+  letter-spacing: .1em;
+  color: azure;
+  margin-top: 3px;
+}
+
+.testimonial{
+  background-color:azure;
+  border: 1px solid black;
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-self: center;
+}
+

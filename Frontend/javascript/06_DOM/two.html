@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Interpretation</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent');
+    //Logging the parent div and its children.
+    console.log(parent);
+    //Children of parent div are the divs with class day.
+    console.log(parent.children);
+    //Logging the innerHTML of Tuesday div which is the second child of parent div.
+    console.log(parent.children[1].innerHTML);
+
+    //Iterating through the children of parent div and logging their innerHTML.
+    for(let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML);
+    }
+
+    //Changing the content and style of Tuesday div.
+    parent.children[1].style.color = "red";
+    parent.children[2].innerHTML = "Hurray! It's Wednesday";
+
+    //First and last element child of parent div.
+    console.log(parent.firstElementChild);
+    console.log(parent.lastElementChild);
+
+    //Query selector returns the first element that matches the selector.
+    const dayOne = document.querySelector('.day');
+    console.log(dayOne);
+
+    //Parent element of dayOne is parent div and next sibling of dayOne is Tuesday div.
+    console.log(dayOne.parentElement);
+    console.log(dayOne.nextElementSibling);
+
+    //Child nodes include text nodes as well, which are the spaces and line breaks in the HTML.
+    console.log("NODES: ", parent.childNodes);
+    
+    //Creating a new div element and adding it as the last child of parent div.
+    const div = document.createElement('div');
+    //Logging the newly created div element.
+    console.log(div);
+    //Adding class and content to the new div element and appending it to the parent div.
+    div.className = "day";
+    //Logging the innerHTML of the new div element.
+    div.innerHTML = "Friday";
+    //Appending the new div element to the parent div.
+    parent.appendChild(div);
+
+    //Another way to add content to the new div element is by creating a text node and appending it to the div element.
+    const addText = document.createTextNode("Another way to add friday");
+    div.appendChild(addText);
+</script>
+</html>

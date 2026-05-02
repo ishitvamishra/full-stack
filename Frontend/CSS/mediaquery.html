@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 2px solid black;
+            background-color: grey;
+            padding: 5px;
+            margin: 2px;
+            display: flex;
+            width: 500px;
+        }
+        .leftbox{
+            background-color: beige;
+            border: 1px solid black;
+            padding: 5px;
+            margin:5px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+        .rightbox{
+            background-color: black;
+            border: 1px solid black;
+            padding: 5px;
+            margin:5px;
+            width:45%
+        }
+        #box1{
+            border: 1px solid black;
+            background-color: brown;
+            height:20px;
+            width: 100px;
+            text-align: center;
+            box-shadow: 2px 2px 10px 3px black;
+            position: relative;    /*postion relative is to be able to use top right left bottom properties important */
+            animation-name: movement;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-direction: alternate;
+        }
+        #box2{
+            border: 1px solid black;
+            background-color: brown;
+            height:20px;
+            width: 100px;
+            text-align: center;
+            box-shadow: 2px 2px 10px 3px black;
+            position: relative;    /*postion relative is to be able to use top right left bottom properties important */
+            animation-name: movement;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-direction: alternate;
+        }
+        img{
+            height: 150px;
+        }
+
+        @media (max-width: 640px){
+            .container{
+                flex-direction: column;
+            }
+        }
+
+        @keyframes movement{
+            from{
+                top: 0;
+                left: 0;
+            }
+
+            to{
+                top:0;
+                left:121px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="leftbox">
+            <p id="box1">text1</p>
+            <p id="box2">text2</p>
+        </div>
+        <div class="rightbox">
+            <img src="Batmanbgremove.png" alt="">
+        </div>
+    </div>
+</body>
+</html>

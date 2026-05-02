@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <ul class =  "language">
+        <li>Javascript</li>
+    </ul>
+</body>
+
+<script>
+    //Adding new list items to the unordered list with class language.
+    function addLang(lanName){
+        const li = document.createElement('li');
+        li.innerHTML = lanName;
+        document.querySelector('.language').appendChild(li);
+    }
+    addLang('Python');
+    addLang('Java');
+
+    //Another way to add content to the new list item is by creating a text node and appending it to the list item element.
+    function addOptiLang(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLang('C++');
+    addOptiLang('C#');
+
+    //Editing the content of the first list item.
+    const secondLang = document.querySelector("li:nth-child(2)");
+    secondLang.innerHTML = "TypeScript";
+
+    //Replacing the second list item with a new list item.
+    const newLi = document.createElement('li');
+    newLi.textContent = "Go";
+    secondLang.replaceWith(newLi);
+
+    //editing through outerHTML
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = "<li>Ruby</li>";
+
+    //Removing the list item.
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.remove();
+
+</script>
+</html>

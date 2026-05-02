@@ -1,0 +1,229 @@
+<!-- Creating div side by side -->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .mycontainer {
+      display: flex;
+      margin-top: 35px;
+      margin-bottom: 35px;
+    }
+    .mycontainer>div {
+      width: 33%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    nav {
+      background-color: black;
+      padding: 10px 0;  /*adds vertical padding*/
+    }
+
+    nav ul {
+      list-style: none;        /* Removes bullets */
+      margin: 0;               /* Removes default margin space outside the element */
+      padding: 0;              /* Removes default padding space inside the element*/
+      display: flex;           /* Aligns items in a row */
+      justify-content: space-around; /* Even spacing  alternatively we can use space-between or space-evenly*/
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;     /* to maintain the size of each box*/
+      display: block;         /* to make each list item behave like a block that takes full space within the list*/
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: red;  /* Hover effect */
+      border-radius: 5px;
+    }
+
+    table{
+      margin-top:35px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Creating a navbar -->
+<nav>
+  <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="">About</a></li>
+    <li><a href="">Contact</a></li>
+    <li><a href="">Login</a></li>
+  </ul>
+</nav>
+
+<div class="mycontainer">
+  <div>Box 1</div>
+  <div>Box 2</div>
+  <div>Box 3</div>
+</div>
+
+<table border="1">
+  <thead>
+    <th>Student</th>
+    <th>Student Name</th>
+    <th>Gender</th>
+    <th>Age</th>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>1234</td>
+      <td colspan="3" style ="text-align:center;" >Bill</td>
+      <!-- <td>Male</td>
+      <td>17</td> -->
+    </tr>
+    <tr>
+      <td>1234</td>
+      <td>Bill</td>
+      <td>Male</td>
+      <td rowspan="3">17</td>
+    </tr>
+    <tr>
+      <td>1234</td>
+      <td>Bill</td>
+      <td>Male</td>
+      <!-- <td>17</td> -->
+    </tr>
+    <tr>
+      <td>1234</td>
+      <td>Bill</td>
+      <td>Male</td>
+      <!-- <td>17</td> -->
+    </tr>
+  </tbody>
+</table>
+
+<!-- Creating table 2 -->
+
+<table border="1">
+  <thead>
+    <th>Column 1</th>
+    <th>Column 2</th>
+    <th>Column 3</th>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td rowspan="2">Row 1 Cell 1</td>
+      <td>Row 1 Cell 2</td>
+      <td>Row 1 Cell 3</td>
+    </tr>
+    <tr>
+      <td>Row 2 Cell 2</td>
+      <td>Row 2 Cell 3</td>
+    </tr>
+    <tr>
+      <td colspan="3">Row 3 Cell 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Creating table 3 -->
+
+<table border="1">
+  <thead>
+    <th>No</th>
+    <th>Full Name</th>
+    <th>Position</th>
+    <th>Salary</th>
+    <th>Type</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Bill Gates</td>
+      <td>Founder Microsoft</td>
+      <td>$1000</td>
+      <td rowspan="4">Company Founder</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Steve Jobs</td>
+      <td>Founder Apple</td>
+      <td>$1200</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Larry Page</td>
+      <td>Founder Google</td>
+      <td>$1100</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Mark Zukerberg</td>
+      <td>Founder Facebook</td>
+      <td>$1300</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan=3>Total Expense</td>
+      <td>4600$</td>
+    </tr>
+  </tfoot>
+</table>
+
+<br>
+<br>
+
+<label for="cars">Choose a car:</label>
+<select id="cars" name="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat">Fiat</option>
+  <option value="audi">Audi</option>
+</select>
+
+<br>
+<br>
+
+<form action="/action_page.php">
+  <input list="browsers">
+  <datalist id="browsers">
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</form>
+
+
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .mycontainer {
+      display: flex;
+    }
+    .mycontainer > div {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mycontainer">
+  <div>Box A</div>
+  <div>Box B</div>
+  <div>Box C</div>
+</div>
+
+</body>
+</html> -->
+

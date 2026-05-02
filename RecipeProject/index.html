@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&family=Sevillana&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="">
+            </div>
+            <div class="items">
+                <ul class="nav-list">
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#favourite">CHEF'S FAVOURITE</a></li>
+                    <li><a href="#recipes">ALL RECIPES</a></li>
+                    <li class="dropdown">CUISINE
+                        <ul class="dropdown-menu">
+                            <li><a href="#italian">Italian</a></li>
+                            <li><a href="#indian">Indian</a></li>
+                            <li><a href="#chinese">Chinese</a></li>
+                            <li><a href="#mexican">Mexican</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">ABOUT</a></li>
+                </ul>
+                <button>
+                    <img src="login.png" alt="">
+                </button>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search our recipes..." class="search-box">
+            <button class="search-icon-btn">
+                <img src="search.png" alt="Search">
+            </button>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="image1.png" alt="">
+                <h2>SALADS</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image2.png" alt="">
+                <h2>MOST POPULAR</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image3.png" alt="">
+                <h2>SNACK</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image5.png" alt="">
+                <h2>DINNER</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+            <div class="card">
+                <img src="image4.png" alt="">
+                <h2>QUICK AND EASY</h2>
+                <button class="button">View Recipe</button>
+            </div>
+        </div>
+        <div class="testimonial">Testimonial</div>
+
+        <div class="footer">All copyrights reserved</div>
+
+
+    </div>
+    <script>
+        const searchInput = document.querySelector('.search-box');
+        const searchButton = document.querySelector('.search-icon-btn');
+
+  // 🔍 On Enter key
+        searchInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission if inside a form
+            handleSearch();
+            }
+        });
+
+  // 🔍 On icon click
+        searchButton.addEventListener('click', handleSearch);
+
+        function handleSearch() {
+            const query = searchInput.value.trim();
+
+            if (query !== '') {
+            // ✅ Your search action
+            alert(`Searching for: ${query}`); // Replace with actual logic
+            searchInput.value = ''; // ✅ Clears the input
+            }
+        }
+    </script>
+
+
+
+</body>
+</html> 
