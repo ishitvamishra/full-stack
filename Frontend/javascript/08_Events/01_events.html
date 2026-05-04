@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //writing onclick inside the image tag is not a good practice because it mixes the structure of the HTML with the behavior of the JavaScript 
+    //and it can lead to code that is difficult to maintain and debug. It is better to separate the structure and behavior by using event listeners
+    //  in JavaScript to handle the click events on the images. This way, you can keep your HTML clean and your JavaScript organized. 
+    
+    //the method used below does not provided as good features as addEventListener method because it can only handle one event for each element 
+    //and if we try to add another event it will overwrite the previous event. For example, if we try to add another click event to the same image
+    // it will overwrite the previous click event and only the last click event will be executed
+    
+    // document.getElementById('owl').onclick = function() {
+    //     alert("You clicked on the owl image!");
+    // }
+
+    //the method used below is better than the previous method because it can handle multiple events for the same element and it does not overwrite the previous events.
+    //For example, if we try to add another click event to the same image it will not overwrite the previous click event and both click events will be executed
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //     alert("You clicked on the owl image!");
+    //     // console.log(e)
+    // }, false) 
+    // the third parameter is used to specify whether the event should be captured or not. If it is set to true, the event will be captured and it will be 
+    //executed before the event is propagated to the target element. If it is set to false, the event will be executed after the event is propagated to the target element. 
+    // By default, it is set to false.;
+
+    //type, timestamp, defaultPrevented, target, currentTarget, toElement, srcElement,
+    // clientX, clientY, screenX, screenY, altkey, ctrlkey, shiftkey, keyCode
+
+
+    // event bubbling is a type of event propagation where the event starts from the target element and then bubbles up to the parent elements. happens when 3rd parameter of addEventListener is set to false or not provided at all.
+    // event capturing is a type of event propagation where the event starts from the parent elements and then captures down to the target element. happens when 3rd parameter of addEventListener is set to true.
+    // document.getElementById('images').addEventListener('click', function(e) {
+    //     console.log("clicked inside the ul")
+    // }, true)
+    
+
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //     console.log("clicked on the owl image")
+    //     e.stopPropagation() // this method prevents the event bubbling or capturing
+    // }, true) 
+
+    // //bubbling : clicked on the owl image -> clicked inside the ul
+    // //capturing : clicked inside the ul -> clicked on the owl image
+
+    // document.getElementById('google').addEventListener('click', function(e) {
+    //     console.log("clicked on the google link")
+    //     e.preventDefault() // this method is used to prevent the default behavior of the event. In this case, it will prevent the default behavior of the anchor tag which 
+    //     // is to navigate to the href attribute value when clicked. So when we click on the Google link, it will not navigate to google.com and instead it will execute the 
+    //     // code inside the event listener function.
+    // }, false)
+
+    //Task is to make the images disappear when clicked by preventing event spillover
+    document.querySelector('#images').addEventListener(
+        'click', function(e){
+            console.log(e.target.parentNode) // e.target gives element on which event is triggered and parentNode gives the parent element of the target element
+            if(e.target.tagName === 'IMG') {                // this condition is used to check if the target element is an image element or not. 
+                let removeIt  = e.target.parentNode
+                removeIt.remove() // this method is used to remove the element from the DOM. In this case, it will remove the parent element of the target element which is the li element that contains the image. So when we click on any image, it will remove the li element that contains that image and make it disappear from the page.
+            }
+            
+            //removeIt.parentNode.removeChild(removeIt) // this is another way to remove the element from the DOM. In this case, it will remove the parent element of the target element which is the li element that contains the image. So when we click on any image, it will remove the li element that contains that image and make it disappear from the page.
+        }
+    )
+
+    //the above method has a problem that when click on li item instead of image everything inside the li item will be removed because the event is triggered on the li element 
+    // and not on the image element. To fix this problem, we can check if the target element is an image element before removing it. We can do this by checking the tagName 
+    // property of the target element. If the tagName is 'IMG', then we can remove the parent element of the target element which is the li element that contains the image. 
+    // So when we click on any image, it will remove the li element that contains that image and make it disappear from the page. But if we click on any other part of the li element, it will not remove anything from the page.
+    
+    
+
+</script>
+</html>
