@@ -113,4 +113,4 @@ fetch('https://api.github.com/users/hiteshchoudhary')
 .catch((error) => console.log(error))
 
 // promise.all
-// yes this is also available, kuch reading aap b kro.
+// A fetch promise does not reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
