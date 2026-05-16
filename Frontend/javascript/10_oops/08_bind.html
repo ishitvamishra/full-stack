@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    class React {
+        constructor(){
+            this.library = "React"
+            this.server = "https://localhost:300"
+
+            //requirement
+            document
+                .querySelector('button')
+                //not using bind method will cause the this keyword inside the handleClick method to refer to
+                //the button element that was clicked, instead of the instance of the React class. This is because
+                //when a function is called as an event handler, the this keyword inside the function refers to the element that triggered the event.
+                //pehle humne handleClick method ko button ke click event ke saath directly assign kiya, toh jab button click hota hai,
+                //toh handleClick method ke andar this keyword button element ko refer karta hai, isliye this.server undefined hota hai.
+                .addEventListener('click', this.handleClick.bind(this))
+
+                //what bind method does is it creates a new function that, when called, has its this keyword set to
+                //the provided value (in this case, the instance of the React class). So when the button is clicked,
+                //the handleClick method will be called with the correct this keyword, allowing us to access the server property of the React class instance.
+        }
+        handleClick(){
+            console.log("button clicked");
+            console.log(this.server);
+        }
+    }
+
+    const app = new React()
+</script>
+</html>

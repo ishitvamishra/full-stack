@@ -114,3 +114,17 @@ fetch('https://api.github.com/users/hiteshchoudhary')
 
 // promise.all
 // A fetch promise does not reject on HTTP error status even if the response is an HTTP 404 or 500. Instead, it will resolve normally (with ok status set to false), and it will only reject on network failure or if anything prevented the request from completing.
+
+/*
+Working of fetch
+                response = fetch('something', "here you can data that you want to send")
+                        __________________________|____________________
+                       |                                               |
+                Data : ___(remains empty user)                        Web Browser/ node(resource needed to send netwrok request)
+                        has no access to alter its value                                    |
+                onfulfilled: []                                                             |-> Network Request
+                onRejection: []                                                                         |
+                        |-> either of these 2 are responsible for filling value in data                 |-> fulfilled (request reached even if it throws error(404)) -> response value is sent to onfulfilled array 
+                        value filled in data is reflected to global variable response                   |-> request rejected -> response of rejected is sent to onRejection array
+                                                                                                        (in any case only one of the array will be filled because either request is rejected or responded)
+*/
