@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+<!-- ============================================================
+SCRIPT 1 — CLOSURE KA CONCEPT SAMAJHNA (Commented Examples)
+Yeh saare examples closure kya hai yeh step by step dikhate hain
+============================================================ -->
+<script>
+
+    // ──────────────────────────────────────────────
+    // EXAMPLE 1 — Basic: Inner function, outer variable
+    //
+    // function init() {
+    //     let name = "Mozilla";      ← outer function ki variable
+    //     function displayName() {
+    //         console.log(name);     ← inner function use kar rahi hai outer ki variable
+    //     }                            yeh CLOSURE hai — inner ko name "yaad" hai
+    //     displayName();
+    // }
+    // init();
+    // ──────────────────────────────────────────────
+
+
+    // ──────────────────────────────────────────────
+    // EXAMPLE 2 — Scope Chain (kaun kya dekh sakta hai)
+    //
+    // function outer(){
+    //     let username = "hitesh"         ← outer ki variable
+    //
+    //     console.log("OUTER", secret);   ← ❌ ERROR! outer, inner ki variable nahi dekh sakta
+    //                                        Scope sirf UPAR jaata hai, neeche nahi
+    //
+    //     function inner(){
+    //         let secret = "my123"        ← inner ki apni variable
+    //         console.log("inner", username); ← ✅ username chain mein upar milta hai
+    //     }
+    //
+    //     function innerTwo(){
+    //         console.log("innerTwo", username); ← ✅ username yahan bhi accessible hai
+    //         console.log(secret);               ← ❌ ERROR! secret sirf inner() ke andar tha
+    //     }                                         innerTwo() aur inner() siblings hain
+    //                                               siblings ek doosre ki variables nahi dekhte
+    //     inner()
+    //     innerTwo()
+    // }
+    // outer()
+    //
+    // console.log("TOO OUTER", username); ← ❌ ERROR! username outer() ke andar tha
+    //                                        bahar se bilkul accessible nahi
+    //
+    // RULE: Scope chain SIRF UPAR jaati hai
+    //   inner → outer → global  ✅
+    //   outer → inner           ❌
+    //   sibling → sibling       ❌
+    // ──────────────────────────────────────────────
+
+
+    // ──────────────────────────────────────────────
+    // EXAMPLE 3 — REAL CLOSURE: Function return karna
+    //
+    // function makeFunc() {
+    //     const name = "Mozilla";     ← local variable
+    //
+    //     function displayName() {
+    //         console.log(name);      ← name ko use kar raha hai
+    //     }
+    //
+    //     return displayName;         ← ⚠️ function RETURN kar rahe hain, CALL nahi!
+    //                                    brackets nahi hain → return displayName (reference)
+    //                                    brackets hote → return displayName() (result)
+    // }
+    //
+    // const myFunc = makeFunc();
+    // ↑ makeFunc() chala, khatam hua
+    //   normally `name` variable ab DESTROY ho jaana chahiye tha
+    //   lekin... nahi hua! kyun?
+    //
+    // myFunc();  ← yahan bhi `name` accessible hai → "Mozilla" print hoga
+    //
+    // CLOSURE KI DEFINITION:
+    // Jab ek inner function apni outer function ki variables ko
+    // YAAD rakhta hai — chahe outer function kab ka khatam ho chuka ho
+    // JS engine ne dekha ki displayName ko `name` chahiye
+    // toh usne `name` ko garbage collect nahi kiya — memory mein rakha
+    // ──────────────────────────────────────────────
+
+</script>
+
+
+<!-- ============================================================
+SCRIPT 2 — CLOSURE KA PRACTICAL USE: Button Click Handler
+============================================================ -->
+<script>
+
+    // ──────────────────────────────────────────────
+    // PEHLA TARIKA — Bina closure ke (Commented)
+    // Problem: Har button ke liye alag function likhna pada
+    //
+    // document.getElementById("orange").onclick = function(){
+    //     document.body.style.backgroundColor = `orange`
+    // }
+    // document.getElementById("green").onclick = function(){
+    //     document.body.style.backgroundColor = `green`
+    // }
+    //
+    // Yeh kaam karta hai, lekin:
+    // - Repetition hai — agar 10 colors hote toh 10 functions
+    // - DRY principle violate ho raha hai (Don't Repeat Yourself)
+    // ──────────────────────────────────────────────
+
+
+    // ──────────────────────────────────────────────
+    // DOOSRA TARIKA — Closure ke saath ✅
+    //
+    // clickHandler ek FACTORY function hai —
+    // color lekar ek nayi function BANATA aur RETURN karta hai
+    // ──────────────────────────────────────────────
+
+    function clickHandler(color) {
+
+        // ⚠️ Yeh line commented hai — samajhna zaroori hai kyun:
+        // document.body.style.backgroundColor = `${color}`
+        //
+        // Agar yeh uncommented hoti, toh:
+        // clickHandler("orange") call hote hi TURANT background change ho jaata
+        // Button click ka wait nahi karta — galat behavior!
+        // Hume chahiye ki click HONE PAR change ho
+
+        return function() {
+            // ← Yeh CLOSURE hai!
+            // Yeh inner function `color` ko yaad rakhta hai
+            // chahe clickHandler() kab ka khatam ho chuka ho
+            //
+            // Jab orange button click hoga:
+            //   → clickHandler("orange") se jo function return hua tha woh chalega
+            //   → us function ko `color` = "orange" yaad hai (closure)
+            //   → background orange ho jaayega
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+
+    // ──────────────────────────────────────────────
+    // Yahan kya ho raha hai — LINE BY LINE
+    //
+    // clickHandler("orange") → abhi call hua
+    //   → color = "orange" set hua
+    //   → ek nayi function RETURN hui (click hone par chalegi)
+    //   → woh function `onclick` mein save ho gayi
+    //
+    // Baad mein jab user Orange button dabayega:
+    //   → saved function chalegi
+    //   → color ki value "orange" yaad hai (closure!)
+    //   → background = orange
+    // ──────────────────────────────────────────────
+
+    document.getElementById('orange').onclick = clickHandler("orange")
+    //                                           ↑                  ↑
+    //                               abhi call ho raha hai     color = "orange"
+    //                               return mein ek function aa raha hai
+    //                               woh function onclick mein store ho gaya
+
+    document.getElementById('green').onclick = clickHandler("green")
+    //                                          same cheez — alag color ke saath
+    //                                          dono functions alag hain
+    //                                          dono ke paas apna apna `color` yaad hai
+
+
+    // ======================════════════════════════════════════
+    // CLOSURE KA FAYDA: Memory efficient code likhna
+    // Agar humne clickHandler ke andar `color` variable ko garbage collect kar diya hota,
+    // toh click hone par background change nahi hota — kyunki `color` ki value available nahi hoti
+    // Closure ke through humne `color` ko memory mein rakha, isliye click hone par woh value accessible hai
+    // Aur humne ek hi function factory banaya, jisse hum multiple buttons ke liye alag alag functions bana sakte hain, bina code repeat kiye
+    // ======================════════════════════════════════════
